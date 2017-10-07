@@ -3,7 +3,6 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/core.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 
 LOCAL_PATH := device/moto/e4
-MTK_ANT_SUPPORT := true
 
 $(call inherit-product-if-exists, vendor/moto/e4/e4-vendor.mk)
 
@@ -172,22 +171,3 @@ PRODUCT_SYSTEM_SERVER_JARS += com.cyanogenmod.keyhandler
 
 # Never dexopt the keyhandler
 $(call add-product-dex-preopt-module-config,com.cyanogenmod.keyhandler,disable)
-
-# Add for ANT+
-ifeq ($(strip $(MTK_ANT_SUPPORT)), true)
-
-BOARD_ANT_WIRELESS_DEVICE :="vfs-prerelease"
-
-      PRODUCT_PACKAGES += com.dsi.ant.antradio_library \
-                          AntHalService \
-                          ANT_RAM_CODE_E1.BIN \
-                          ANT_RAM_CODE_E2.BIN
-                          
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/ANT/prebuild/libantradio32.so:system/lib/libantradio.so \
-    $(LOCAL_PATH)/ANT/prebuild/antradio_app:system/xbin/antradio_app
-
-PRODUCT_COPY_FILES += \
-    external/ant-wireless/antradio-library/com.dsi.ant.antradio_library.xml:system/etc/permissions/com.dsi.ant.antradio_library.xml
-
-endif
