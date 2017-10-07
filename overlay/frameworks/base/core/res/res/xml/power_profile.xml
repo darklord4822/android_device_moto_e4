@@ -26,7 +26,7 @@
     <array name="cpu.active">
         <value>100</value>
     </array>
-    <item name="battery.capacity">4000</item>
+    <item name="battery.capacity">2800</item>
     <array name="wifi.batchedscan">
         <value>.2</value>
         <value>2</value>
