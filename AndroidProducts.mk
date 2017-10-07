@@ -1,2 +1,2 @@
 PRODUCT_MAKEFILES := \
-    $(LOCAL_DIR)/device_moto_e4.mk
+    $(LOCAL_DIR)/device_e4.mk
