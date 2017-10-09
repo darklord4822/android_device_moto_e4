@@ -3,7 +3,7 @@
 
 
 # Disable NINJA
-USE_NINJA := false
+#USE_NINJA := false
 
 # Architecture
 FORCE_32_BIT := true
@@ -45,20 +45,21 @@ TARGET_USERIMAGES_USE_EXT4 := true
 BOARD_CACHEIMAGE_FILE_SYSTEM_TYPE := ext4
 
 # Kernel
-TARGET_KERNEL_CONFIG := woods_defconfig
-BOARD_KERNEL_IMAGE_NAME := zImage-dtb
+BOARD_KERNEL_IMAGE_NAME := zImage
 TARGET_KERNEL_SOURCE := kernel/moto/e4
 BOARD_KERNEL_BASE := 0x40000000
 BOARD_KERNEL_PAGESIZE := 2048
 BOARD_RAMDISK_OFFSET := 0x04000000
 BOARD_TAGS_OFFSET := 0xE000000
 ifeq ($(FORCE_32_BIT),true)
+ARCH := arm
 TARGET_KERNEL_ARCH := arm
-BOARD_KERNEL_CMDLINE = bootopt=64S3,32N2,32N2 androidboot.selinux=permissive
-BOARD_KERNEL_OFFSET = 0x00008000
+TARGET_KERNEL_CONFIG := woods_defconfig
+BOARD_KERNEL_CMDLINE := bootopt=64S3,32N2,32N2 androidboot.selinux=permissive androidboot.selinux=disabled 
+BOARD_KERNEL_OFFSET := 0x00008000
 else
 TARGET_KERNEL_ARCH := arm64
-BOARD_KERNEL_CMDLINE = bootopt=64S3,32N2,64N2 androidboot.selinux=permissive
+BOARD_KERNEL_CMDLINE := bootopt=64S3,32N2,64N2 androidboot.selinux=permissive androidboot.selinux=disabled 
 BOARD_KERNEL_OFFSET = 0x00080000
 TARGET_USES_64_BIT_BINDER := true
 endif
@@ -87,7 +88,7 @@ BOARD_GLOBAL_CFLAGS += -DDISABLE_HW_ID_MATCH_CHECK
 
 
 # Graphics
-BOARD_EGL_CFG := device/moto/e4/configs/egl.cfg
+BOARD_EGL_CFG := /vendor/moto/e4/vendor/lib/egl/egl.cfg
 BOARD_EGL_WORKAROUND_BUG_10194508 := true
 USE_OPENGL_RENDERER := true
 NUM_FRAMEBUFFER_SURFACE_BUFFERS := 3
@@ -97,12 +98,9 @@ MTK_HWC_SUPPORT := yes
 MTK_HWC_VERSION := 1.4.1
 MTK_GPU_VERSION := mali midgard r7p0
 
-# MTK Hardware
-BOARD_HAS_MTK_HARDWARE := true
-BOARD_USES_MTK_HARDWARE := true
-MTK_HARDWARE := true
-#COMMON_GLOBAL_CFLAGS += -DMTK_HARDWARE -DADD_LEGACY_ACQUIRE_BUFFER_SYMBOL
-#COMMON_GLOBAL_CPPFLAGS += -DMTK_HARDWARE
+# Mediatek support
+BOARD_USES_MTK_HARDWARE:=true
+#DISABLE_ASHMEM_TRACKING := true
 
 # Camera
 USE_CAMERA_STUB := true
@@ -162,12 +160,12 @@ BOARD_HAVE_BLUETOOTH := true
 #BOARD_HAVE_BLUETOOTH_MTK := true
 #BOARD_BLUETOOTH_DOES_NOT_USE_RFKILL := true
 BOARD_BLUETOOTH_BDROID_HCILP_INCLUDED := 0
-BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := $(LOCAL_PATH)/bluetooth
+BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/moto/e4/bluetooth
 
 TARGET_LDPRELOAD += mtk_symbols.so
 
 # CWM
-TARGET_RECOVERY_FSTAB := device/moto/e4/rootdir/root/recovery.fstab
+TARGET_RECOVERY_FSTAB := device/moto/e4/rootdir/recovery.fstab
 BOARD_HAS_NO_SELECT_BUTTON := true
 
 # TWRP stuff
@@ -186,8 +184,8 @@ TW_HAS_DOWNLOAD_MODE := true
 TW_EXCLUDE_SUPERSU := true
 TW_USE_TOOLBOX := true
 
-TARGET_SYSTEM_PROP := $(LOCAL_PATH)/system.prop
-TARGET_SPECIFIC_HEADER_PATH := $(LOCAL_PATH)/include
+TARGET_SYSTEM_PROP := device/moto/e4/system.prop
+TARGET_SPECIFIC_HEADER_PATH := device/moto/e4/include
 TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/class/android_usb/android0/f_mass_storage/lun/file
 
 ifneq ($(FORCE_32_BIT),yes)

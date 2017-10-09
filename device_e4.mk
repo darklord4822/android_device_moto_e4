@@ -129,7 +129,7 @@ PRODUCT_PACKAGES += \
 
 ## CM14 mtk symbols
 PRODUCT_PACKAGES += \
-    libmtk_symbols
+    mtk_symbols
 
 # Power
 PRODUCT_PACKAGES += \
