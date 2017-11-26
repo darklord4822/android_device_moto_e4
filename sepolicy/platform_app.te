@@ -103,18 +103,6 @@ allow platform_app guiext-server:binder { transfer call };
 # Package: com.android.settings
 allow platform_app system_app_data_file:file {read write};
 
-# Date : 2015/09/12
-# Operation : SQC
-# Purpose : allow settings get file of ntfs device
-# Package: com.android.settings
-allow platform_app fuseblk:dir create_dir_perms;
-
-# Date : 2015/10/15
-# Operation : jg_jinchuanqin
-# Purpose :[ALPS02350168]allow Settings get file of ntfs device
-# Package: com.android.settings
-allow platform_app fuseblk:file create_file_perms;
-
 # Date : 2015/10/13
 # Operation : md_monitor IT
 # Purpose : Allow platform app connects to md_monitor's local socket

@@ -225,17 +225,6 @@ service atcid-daemon-e /vendor/bin/atcid
 	disabled
 	oneshot
 
-# Lct add by zl for fpc
-service etsd /system/bin/etsd
-	user system
-	group system
-	class late_start
-
-service fingerprintd /system/bin/fingerprintd
-	class late_start
-	user system
-# Lct add end
-
 on early_property:ro.build.type=eng
 start atci_service
 start atcid-daemon-e
@@ -254,4 +243,3 @@ on property:persist.sys.runin=enable
 
 on property:persist.sys.runin=disable
     write /sys/class/power_supply/battery/device/BatteryTestStatus 0
-

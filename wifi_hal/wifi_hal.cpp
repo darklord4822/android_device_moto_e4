@@ -137,7 +137,6 @@ wifi_error init_wifi_vendor_hal_func_table(wifi_hal_fn *fn)
     fn->wifi_get_logger_supported_feature_set = wifi_get_logger_supported_feature_set;
     fn->wifi_get_ring_data = wifi_get_ring_data;
     fn->wifi_get_driver_version = wifi_get_driver_version;*/
-    fn->wifi_set_bssid_blacklist = wifi_set_bssid_blacklist;
     fn->wifi_start_rssi_monitoring = wifi_start_rssi_monitoring;
     fn->wifi_stop_rssi_monitoring = wifi_stop_rssi_monitoring;
     fn->wifi_start_sending_offloaded_packet = wifi_start_sending_offloaded_packet;
