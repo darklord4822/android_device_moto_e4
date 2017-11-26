@@ -26,6 +26,12 @@
 #include "common.h"
 #include "cpp_bindings.h"
 
+/* BSSID blacklist */
+typedef struct {
+    int num_bssid;                           // number of blacklisted BSSIDs
+    mac_addr bssids[MAX_BLACKLIST_BSSID];    // blacklisted BSSIDs
+} wifi_bssid_params;
+
 typedef enum {
     GSCAN_SUBCMD_GET_CAPABILITIES = ANDROID_NL80211_SUBCMD_GSCAN_RANGE_START,
 
@@ -1633,7 +1639,7 @@ wifi_error wifi_set_epno_list(wifi_request_id id, wifi_interface_handle iface,
      }
      return result;
 }
-
+#if 0
 class BssidBlacklistCommand : public WifiCommand
 {
 private:
@@ -1697,15 +1703,11 @@ public:
         return NL_SKIP;
     }
 };
-
+#endif
 wifi_error wifi_set_bssid_blacklist(wifi_request_id id, wifi_interface_handle iface,
         wifi_bssid_params params)
 {
-    wifi_handle handle = getWifiHandle(iface);
-
-    BssidBlacklistCommand *cmd = new BssidBlacklistCommand(iface, id, &params);
-    wifi_register_cmd(handle, id, cmd);
-    return (wifi_error)cmd->start();
+    return WIFI_ERROR_NOT_SUPPORTED;
 }
 
 ////////////////////////////////////////////////////////////////////////////////

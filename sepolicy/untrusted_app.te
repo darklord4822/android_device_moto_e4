@@ -33,13 +33,6 @@ allow untrusted_app teei_client_device:chr_file write;
 # Package Name: com.android.launcher2
 allow untrusted_app guiext-server:binder { transfer call };
 
-# Date : 2016/07/12
-# Operation : SQC
-# Purpose : allow untrusted_app access ntfs device
-allow untrusted_app fuseblk:dir search;
-allow untrusted_app fuseblk:file read;
-allow untrusted_app fuseblk:file rw_file_perms;
-
 # Date : 2016/7/22
 # Operation: SQC
 # Purpose : Allow untrusted_app access through sdcardfs and fuse. Note: Android is planned
