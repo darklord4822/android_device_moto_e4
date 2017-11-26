@@ -86,6 +86,7 @@ type nvcfg_file, file_type, data_file_type;
 type cct_data_file, file_type, data_file_type;
 type mediaserver_data_file, file_type, data_file_type;
 type mediacodec_data_file, file_type, data_file_type;
+type livedisplay_sysfs, sysfs_type, file_type;
 
 # Modem Log folder
 type mdlog_data_file, file_type, data_file_type;
