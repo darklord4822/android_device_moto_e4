@@ -1,7 +1,7 @@
-#                                       Device Tree for Motorola E4 (8.0 , 3.18.35+)
+Device Tree for Moto E4
+===========================================
 
 The Moto E4 (codenamed _"e4"_) is a mid-range smartphone from Motorola.
-![Moto E4](http://www.digitik.ru/upload/iblock/dd7/dd77003d77e62a8d7b9eb0d840bd3e77.jpg "Moto E4")
 
 Basic   | Spec Sheet
 -------:|:-------------------------
@@ -17,17 +17,7 @@ Display | 720 x 1280 pixels, 5.0 inches
 Camera  | Main 8MP / Front 5MP, autofocus, LED flash
 
 Copyright 2017 - The LineageOS Project.
-Thanks to olegsvs, danielhk, Zormax, xcore995, SRT.
+Thanks to igor1144, olegsvs, Decker, danielhk, mdeejay, Zormax, SRT.
 
-### Working:
-- [x] Wifi
-- [x] Sound
-- [ ] Ril
-- [ ] Codecs
-- [ ] Camera, flashlight
-- [ ] Radio
-- [ ] Fingerprint
-- [ ] Bluetooth
-- [ ] Sensors
-- [ ] Hotspot
-- ...
+![Moto E4](http://www.digitik.ru/upload/iblock/dd7/dd77003d77e62a8d7b9eb0d840bd3e77.jpg "Moto E4")
+

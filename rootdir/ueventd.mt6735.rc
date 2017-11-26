@@ -19,20 +19,20 @@
 
 # Connectivity
 /dev/stpwmt               0660   system     system
-/dev/wmtdetect            0660   wifi       wifi
+/dev/wmtdetect            0660   system     system
 
 # BT
-/dev/stpbt                0660  bluetooth   bluetooth
+/dev/stpbt                0660   bluetooth  net_bt_stack
 
 # GPS
 /dev/stpgps               0660   gps        gps
 /dev/gps                  0660   gps        system
 
 # ANT
-/dev/stpant               0660   system    system
+/dev/stpant               0660   system     system
 
 # WIFI
-/dev/wmtWifi              0660   wifi      wifi
+/dev/wmtWifi              0660   system     system
 
 # FMRadio
 /dev/fm                   0660   media     media
