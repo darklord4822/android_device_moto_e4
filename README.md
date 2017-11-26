@@ -22,6 +22,7 @@ Thanks to olegsvs, danielhk, Zormax, xcore995, SRT.
 ### Working:
 - [x] Wifi
 - [x] Sound
+- [x] LiveDisplay
 - [ ] Ril
 - [ ] Codecs
 - [ ] Camera, flashlight
