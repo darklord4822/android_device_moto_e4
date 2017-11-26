@@ -25,10 +25,8 @@ on early-init
 
 on init
     # Support legacy paths
+    symlink /sdcard /mnt/sdcard 
     symlink /sdcard /storage/sdcard0
-   
-    # if primary storage is physical, set ro.vold.primary_physical to 1
-    #setprop ro.vold.primary_physical 1
 
     # BATTERY proc
     chown shell system /proc/mtk_battery_cmd/current_cmd
@@ -80,6 +78,7 @@ on fs
 on post-fs
     write /proc/bootprof "INIT:post-fs"
     # Support legacy paths
+    symlink /sdcard /mnt/sdcard 
     symlink /sdcard /storage/sdcard0
 
     #change permissions for mediaserver
