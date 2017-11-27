@@ -2,12 +2,12 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/core.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 
-LOCAL_PATH := device/moto/e4
+LOCAL_PATH := device/moto/woods
 
-$(call inherit-product-if-exists, vendor/moto/e4/e4-vendor.mk)
+$(call inherit-product-if-exists, vendor/moto/woods/woods-vendor.mk)
 
-DEVICE_PACKAGE_OVERLAYS += device/moto/e4/overlay
-PRODUCT_PACKAGE_OVERLAYS += device/moto/e4/overlay # enable this to be able overlay a default wallpaper
+DEVICE_PACKAGE_OVERLAYS += device/moto/woods/overlay
+PRODUCT_PACKAGE_OVERLAYS += device/moto/woods/overlay # enable this to be able overlay a default wallpaper
 
 # Dalvik/HWUI
 $(call inherit-product-if-exists, frameworks/native/build/phone-xxhdpi-2048-dalvik-heap.mk)
@@ -69,7 +69,7 @@ PRODUCT_COPY_FILES += \
     
 # HIDL
 PRODUCT_COPY_FILES += \
-    device/moto/e4/hidl/manifest.xml:system/vendor/manifest.xml
+    device/moto/woods/hidl/manifest.xml:system/vendor/manifest.xml
     
 
 # Ramdisk
