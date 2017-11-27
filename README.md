@@ -1,6 +1,6 @@
 #                                       Device Tree for Motorola E4 (8.0 , 3.18.35+)
 
-The Moto E4 (codenamed _"e4"_) is a mid-range smartphone from Motorola.
+The Moto E4 (codenamed _"woods"_) is a mid-range smartphone from Motorola.
 ![Moto E4](http://www.digitik.ru/upload/iblock/dd7/dd77003d77e62a8d7b9eb0d840bd3e77.jpg "Moto E4")
 
 Basic   | Spec Sheet
