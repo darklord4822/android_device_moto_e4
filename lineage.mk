@@ -23,4 +23,4 @@ PRODUCT_MANUFACTURER := Motorola
 PRODUCT_GMS_CLIENTID_BASE := android-motorola
 
 # Available languages
-PRODUCT_LOCALES := en_US en_GB ru_RU uk_UA tr_TR sk_SK vi_VN fr_FR ar_EG
+PRODUCT_LOCALES := en_US en_GB ru_RU uk_UA tr_TR sk_SK vi_VN fr_FR ar_EG pt_BR
