@@ -178,6 +178,7 @@ TARGET_RECOVERY_FSTAB := device/motorola/woods/rootdir/recovery.fstab
 BOARD_HAS_NO_SELECT_BUTTON := true
 
 # TWRP stuff
+RECOVERY_VARIANT := twrp
 TW_THEME := portrait_hdpi
 RECOVERY_GRAPHICS_USE_LINELENGTH := true
 TW_NO_REBOOT_BOOTLOADER := true
