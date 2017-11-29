@@ -178,4 +178,7 @@ allow vold ut_keymaster_device:chr_file rw_file_perms;
 # O
 allow vold system_data_file:lnk_file { create getattr unlink };
 
+# Allow vold to manage ASEC
+allow vold sdcard_type:file create_file_perms;
+
 

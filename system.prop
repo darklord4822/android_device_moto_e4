@@ -3,8 +3,6 @@
 #
 ro.hardware=mt6735
 ro.board.platform=mt6737m
-service.adb.root=1
-persist.sys.root_access=0
 
 # Wifi
 wifi.interface=wlan0
