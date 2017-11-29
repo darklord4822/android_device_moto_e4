@@ -32,3 +32,30 @@ Thanks to olegsvs, danielhk, Zormax, xcore995, SRT.
 - [ ] Sensors
 - [ ] Hotspot
 - ...
+
+
+### NOTE :
+
+Apply these manual edit to lineage-15.0 source 
+before building the rom
+
+with nano editor, edit these files by Commenting the line :
+
+in ( system/sepolicy/public ) 
+ ```domain.te``` 
+ [ line number : ```227``` ]
+ 
+ in ( system/core/init ) 
+ ```init.cpp```
+ [ line number : ```401``` ]
+
+
+example :
+
+Comment line : ```227```
+
+```nano system/sepolicy/public/domain.te```
+
+Comment line : ```401```
+
+```nano system/core/init/init.cpp```
