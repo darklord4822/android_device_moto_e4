@@ -567,6 +567,11 @@
 #
 /data/misc/sensor.log           u:object_r:bmm050_sensor_log_file:s0
 
+
+# Fingerprint HAL
+/(vendor|system/vendor)/bin/hw/android\.hardware\.biometrics\.fingerprint\.microarray@2\.1-service u:object_r:hal_fingerprint_default_exec:s0
+
+
 # Fingerprint device
 /dev/esfp0(/.*)? u:object_r:esfp0_device:s0
 

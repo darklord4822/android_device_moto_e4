@@ -19,7 +19,7 @@
 
 # Connectivity
 /dev/stpwmt               0660   system     system
-/dev/wmtdetect            0660   wifi       wifi
+/dev/wmtdetect            0660   system     system
 
 # BT
 /dev/stpbt                0660  bluetooth   bluetooth
