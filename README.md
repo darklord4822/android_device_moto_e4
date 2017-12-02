@@ -64,4 +64,10 @@ Copy this ```SkUserConfig.h``` to destination ```external/skia/include/core```  
 
 ```cp external/skia/include/config/SkUserConfig.h external/skia/include/core```
 
+:Sensors HAL (ONLY WHEN...!)
+
+when building with : ```PRODUCT_PACKAGES += android.hardware.sensors@1.0-service``` ,it's advisable to locate the ```Sensors.cpp``` $location :```hardware/interfaces/sensors/default/Sensors.cpp``` and modify it  from```CHECK_GE(getHalDeviceVersion(), SENSORS_DEVICE_API_VERSION_1_3);```  to ```CHECK_GE(getHalDeviceVersion(), SENSORS_DEVICE_API_VERSION_1_0);``` 
+
+see line here : https://github.com/LineageOS/android_hardware_interfaces/blob/621821f3191754678125a44a1f9b4dbd69f76541/sensors/1.0/default/Sensors.cpp#L98
+
 - -
