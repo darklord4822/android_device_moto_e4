@@ -2,12 +2,12 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/core.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 
-LOCAL_PATH := device/moto/e4
+LOCAL_PATH := device/motorola/woods
 
-$(call inherit-product-if-exists, vendor/moto/e4/e4-vendor.mk)
+$(call inherit-product-if-exists, vendor/motorola/woods/woods-vendor.mk)
 
-DEVICE_PACKAGE_OVERLAYS += device/moto/e4/overlay
-PRODUCT_PACKAGE_OVERLAYS += device/moto/e4/overlay # enable this to be able overlay a default wallpaper
+DEVICE_PACKAGE_OVERLAYS += device/motorola/woods/overlay
+PRODUCT_PACKAGE_OVERLAYS += device/motorola/woods/overlay # enable this to be able overlay a default wallpaper
 
 # Dalvik/HWUI
 $(call inherit-product-if-exists, frameworks/native/build/phone-xxhdpi-2048-dalvik-heap.mk)
@@ -19,8 +19,11 @@ PRODUCT_TAGS += dalvik.gc.type-precise
 PRODUCT_AAPT_CONFIG := normal xhdpi xxhdpi
 PRODUCT_AAPT_PREF_CONFIG := xhdpi
 
-PRODUCT_DEFAULT_LANGUAGE := ru
-PRODUCT_DEFAULT_REGION   := RU
+#for aosp
+PRODUCT_NAME := aosp_woods
+
+PRODUCT_DEFAULT_LANGUAGE := en
+PRODUCT_DEFAULT_REGION   := US
 
 # Permissions
 PRODUCT_COPY_FILES += \
@@ -69,7 +72,7 @@ PRODUCT_COPY_FILES += \
     
 # HIDL
 PRODUCT_COPY_FILES += \
-    device/moto/e4/hidl/manifest.xml:system/vendor/manifest.xml
+    device/motorola/woods/hidl/manifest.xml:system/vendor/manifest.xml
     
 
 # Ramdisk
@@ -181,7 +184,7 @@ PRODUCT_PACKAGES += \
     android.hardware.light@2.0-impl \
     android.hardware.light@2.0-service \
     android.hardware.sensors@1.0-impl \
-    android.hardware.sensors@1.0-service \
+    android.hardware.sensors@1.0-service
    
 # Drm HAL 
 PRODUCT_PACKAGES += \

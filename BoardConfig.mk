@@ -1,5 +1,5 @@
 # inherit from the proprietary version
--include vendor/moto/e4/BoardConfigVendor.mk
+-include vendor/motorola/woods/BoardConfigVendor.mk
 
 
 # Disable NINJA
@@ -49,7 +49,7 @@ TARGET_KERNEL_HAVE_NTFS := true
 
 # Kernel
 BOARD_KERNEL_IMAGE_NAME := zImage-dtb
-TARGET_KERNEL_SOURCE := kernel/moto/e4
+TARGET_KERNEL_SOURCE := kernel/motorola/woods
 BOARD_KERNEL_BASE := 0x40000000
 BOARD_KERNEL_PAGESIZE := 2048
 BOARD_RAMDISK_OFFSET := 0x04000000
@@ -80,7 +80,7 @@ BOARD_FLASH_BLOCK_SIZE := 131072
 TARGET_KMODULES := true
 
 # Assert
-TARGET_OTA_ASSERT_DEVICE := Moto_E4,Moto E4,e4,e4
+TARGET_OTA_ASSERT_DEVICE := Moto_E4,Moto E4,moto_e4,e4,woods,woods_f
 
 # Disable memcpy opt (for audio libraries)
 TARGET_CPU_MEMCPY_OPT_DISABLE := true
@@ -97,7 +97,7 @@ WITH_LINEAGE_CHARGER := false
 TARGET_SENSORS_DEVICE_API_VERSION := SENSORS_DEVICE_API_VERSION_1_1
 
 # Graphics
-BOARD_EGL_CFG := /vendor/moto/e4/vendor/lib/egl/egl.cfg
+BOARD_EGL_CFG := /vendor/motorola/woods/vendor/lib/egl/egl.cfg
 USE_OPENGL_RENDERER:=true
 NUM_FRAMEBUFFER_SURFACE_BUFFERS := 3
 TARGET_RUNNING_WITHOUT_SYNC_FRAMEWORK := true
@@ -123,7 +123,7 @@ TARGET_BOOTANIMATION_TEXTURE_CACHE := true
 BOARD_USES_MTK_AUDIO := true
 
 # Lineage Hardware
-BOARD_HARDWARE_CLASS += device/moto/e4/lineagehw
+BOARD_HARDWARE_CLASS += device/motorola/woods/lineagehw
 
 # Fix video autoscaling on old OMX decoders
 #TARGET_OMX_LEGACY_RESCALING := true
@@ -132,7 +132,7 @@ BOARD_HARDWARE_CLASS += device/moto/e4/lineagehw
 BACKLIGHT_PATH := /sys/class/leds/lcd-backlight/brightness
 
 # RIL
-BOARD_RIL_CLASS := ../../../device/moto/e4/ril/
+BOARD_RIL_CLASS := ../../../device/motorola/woods/ril/
 
 # GPS
 BOARD_GPS_LIBRARIES :=true
@@ -169,15 +169,16 @@ BOARD_HAVE_BLUETOOTH := true
 #BOARD_HAVE_BLUETOOTH_MTK := true
 #BOARD_BLUETOOTH_DOES_NOT_USE_RFKILL := true
 BOARD_BLUETOOTH_BDROID_HCILP_INCLUDED := 0
-BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/moto/e4/bluetooth
+BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/motorola/woods/bluetooth
 
 TARGET_LDPRELOAD += mtk_symbols.so
 
 # CWM
-TARGET_RECOVERY_FSTAB := device/moto/e4/rootdir/recovery.fstab
+TARGET_RECOVERY_FSTAB := device/motorola/woods/rootdir/recovery.fstab
 BOARD_HAS_NO_SELECT_BUTTON := true
 
 # TWRP stuff
+#RECOVERY_VARIANT := twrp
 TW_THEME := portrait_hdpi
 RECOVERY_GRAPHICS_USE_LINELENGTH := true
 TW_NO_REBOOT_BOOTLOADER := true
@@ -193,15 +194,15 @@ TW_HAS_DOWNLOAD_MODE := true
 TW_EXCLUDE_SUPERSU := true
 TW_USE_TOOLBOX := true
 
-TARGET_SYSTEM_PROP := device/moto/e4/system.prop
-TARGET_SPECIFIC_HEADER_PATH := device/moto/e4/include
+TARGET_SYSTEM_PROP := device/motorola/woods/system.prop
+TARGET_SPECIFIC_HEADER_PATH := device/motorola/woods/include
 TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/class/android_usb/android0/f_mass_storage/lun/file
 
 BOARD_SEPOLICY_DIRS := \
-       device/moto/e4/sepolicy
+       device/motorola/woods/sepolicy
 
 # Seccomp filter
-BOARD_SECCOMP_POLICY += device/moto/e4/seccomp
+BOARD_SECCOMP_POLICY += device/motorola/woods/seccomp
 
 #HIDL
-DEVICE_MANIFEST_FILE := device/moto/e4/hidl/manifest.xml
+DEVICE_MANIFEST_FILE := device/motorola/woods/hidl/manifest.xml
