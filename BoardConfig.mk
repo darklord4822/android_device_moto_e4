@@ -1,6 +1,10 @@
+# 
+# Copyright (C) 2017
+
 # inherit from the proprietary version
 -include vendor/motorola/woods/BoardConfigVendor.mk
 
+LOCAL_PATH := device/motorola/woods
 
 # Disable NINJA
 #USE_NINJA := false
@@ -54,6 +58,24 @@ BOARD_KERNEL_BASE := 0x40000000
 BOARD_KERNEL_PAGESIZE := 2048
 BOARD_RAMDISK_OFFSET := 0x04000000
 BOARD_TAGS_OFFSET := 0xE000000
+
+#=======================================================
+# prebuilt kernel when needed
+TARGET_PREBUILT_KERNEL := $(LOCAL_PATH)/$(BOARD_KERNEL_IMAGE_NAME)
+ifeq ($(TARGET_PREBUILT_KERNEL),)
+    LOCAL_KERNEL := $(LOCAL_PATH)/zImage-dtb
+else
+    LOCAL_KERNEL := $(TARGET_PREBUILT_KERNEL)
+endif
+
+# Hack for building without kernel sources
+$(shell mkdir -p $(OUT)/obj/KERNEL_OBJ/usr)
+$(shell touch $(OUT)/obj/KERNEL_OBJ/usr/export_includes)
+
+PRODUCT_COPY_FILES += \
+$(LOCAL_KERNEL):kernel
+#=======================================================
+
 ifeq ($(FORCE_32_BIT),true)
 ARCH := arm
 TARGET_ARCH := arm
