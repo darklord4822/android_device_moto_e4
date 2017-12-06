@@ -63,7 +63,7 @@ ro.sf.hwrotation=0
 persist.sys.scrollingcache=2
 
 # temporary enables NAV bar (soft keys)
-qemu.hw.mainkeys=1
+qemu.hw.mainkeys=0
 
 mediatek.wlan.chip=CONSYS_MT6735
 mediatek.wlan.module.postfix=_consys_mt6735
