@@ -4,7 +4,7 @@
 PRODUCT_RELEASE_NAME := E4
 
 # Inherit some common aosp stuffs.
-$(call inherit-product, vendor/lineage/config/common_full_phone.mk)
+#$(call inherit-product, vendor/aosp/config/common_full_phone.mk)
 
 # Inherit device configuration
 $(call inherit-product, device/motorola/woods/aosp_woods.mk)
