@@ -1,9 +1,9 @@
-From 0d97caa23872d7a38f25caae4af3cc74422bd07b Mon Sep 17 00:00:00 2001
+From 2f7c9f0e3d3a1063be5dfe60a4317f45805b0fd2 Mon Sep 17 00:00:00 2001
 From: darklord4822 <darklord4722@gmail.com>
-Date: Sat, 7 Oct 2017 11:52:52 +0000
+Date: Sat, 10 Feb 2018 22:52:19 +0000
 Subject: [PATCH] changes for MTK
 
-Change-Id: Iea6589dd273c21c96948776317be5609ec312265
+Change-Id: I7f02293cb22415ae208536744fc0e8320751f72d
 ---
  include/media/AudioSystem.h                        |   8 +
  include/media/IAudioFlinger.h                      |   8 +
@@ -13,7 +13,8 @@ Change-Id: Iea6589dd273c21c96948776317be5609ec312265
  media/libmedia/AudioSystem.cpp                     | 108 +++++++
  media/libmedia/IAudioFlinger.cpp                   | 213 +++++++++++++
  media/libmedia/IAudioPolicyService.cpp             |  30 +-
- media/libstagefright/ACodec.cpp                    |  39 +++
+ .../libmediaplayerservice/StagefrightRecorder.cpp  |  28 ++
+ media/libstagefright/ACodec.cpp                    |  58 ++++
  media/libstagefright/Android.mk                    |   6 +
  media/libstagefright/CameraSource.cpp              |  27 ++
  media/libstagefright/colorconversion/Android.mk    |   2 +
@@ -34,7 +35,7 @@ Change-Id: Iea6589dd273c21c96948776317be5609ec312265
  .../service/AudioPolicyInterfaceImpl.cpp           |  14 +
  .../audiopolicy/service/AudioPolicyService.cpp     |  49 ++-
  services/audiopolicy/service/AudioPolicyService.h  |  14 +
- 29 files changed, 1177 insertions(+), 3 deletions(-)
+ 30 files changed, 1224 insertions(+), 3 deletions(-)
 
 diff --git a/include/media/AudioSystem.h b/include/media/AudioSystem.h
 index 268791e..86c64c1 100644
@@ -537,8 +538,64 @@ index 2dd1611..05fc3e9 100644
          case IS_OFFLOAD_SUPPORTED: {
              CHECK_INTERFACE(IAudioPolicyService, data, reply);
              audio_offload_info_t info;
+diff --git a/media/libmediaplayerservice/StagefrightRecorder.cpp b/media/libmediaplayerservice/StagefrightRecorder.cpp
+index a6558ab..b1d107d 100644
+--- a/media/libmediaplayerservice/StagefrightRecorder.cpp
++++ b/media/libmediaplayerservice/StagefrightRecorder.cpp
+@@ -936,6 +936,14 @@ status_t StagefrightRecorder::start() {
+ }
+ 
+ sp<MediaCodecSource> StagefrightRecorder::createAudioSource() {
++#ifdef MTK_HARDWARE
++    //MTK80721 HDRecord 2011-12-23
++    if ((mAudioEncoder == AUDIO_ENCODER_AAC || mAudioEncoder == AUDIO_ENCODER_HE_AAC || mAudioEncoder == AUDIO_ENCODER_AAC_ELD) && mSampleRate < 16000)
++    {
++        ALOGD("encode profile tuning:encode:%d,samplerate:%d,min smplerate=16K",mAudioEncoder, mSampleRate);
++        mSampleRate = 16000;
++    }
++#endif
+     int32_t sourceSampleRate = mSampleRate;
+ 
+     if (mCaptureFpsEnable && mCaptureFps >= mFrameRate) {
+@@ -1832,9 +1840,22 @@ status_t StagefrightRecorder::pause() {
+         return OK;
+     }
+ 
++#ifdef MTK_HARDWARE
++    if((mOutputFormat == OUTPUT_FORMAT_AMR_NB ||
++          mOutputFormat == OUTPUT_FORMAT_AMR_WB)
++          &&mAudioEncoderSource != NULL){
++            ALOGW("AMR will pause writer for support stop after pause");
++            mWriter->pause();
++    }else{
+     if (mAudioEncoderSource != NULL) {
+         mAudioEncoderSource->pause();
+     }
++    }
++#else
++    if (mAudioEncoderSource != NULL) {
++        mAudioEncoderSource->pause();
++    }
++#endif
+     if (mVideoEncoderSource != NULL) {
+         mVideoEncoderSource->pause();
+     }
+@@ -1885,6 +1906,13 @@ status_t StagefrightRecorder::resume() {
+         if (source == nullptr) {
+             continue;
+         }
++#ifdef MTK_HARDWARE
++        if (mOutputFormat == OUTPUT_FORMAT_AMR_NB || mOutputFormat == OUTPUT_FORMAT_AMR_WB) {
++            ALOGD("AMR Recording pause-resume");
++            mWriter->start();
++            continue;
++        }
++#endif
+         source->setInputBufferTimeOffset((int64_t)timeOffset);
+         source->start();
+     }
 diff --git a/media/libstagefright/ACodec.cpp b/media/libstagefright/ACodec.cpp
-index 92e2847..4856bec 100644
+index a11494d..8c178c8 100644
 --- a/media/libstagefright/ACodec.cpp
 +++ b/media/libstagefright/ACodec.cpp
 @@ -212,6 +212,35 @@ struct CodecObserver : public BnOMXObserver {
@@ -577,7 +634,41 @@ index 92e2847..4856bec 100644
                      break;
                  }
  
-@@ -5142,6 +5171,16 @@ status_t ACodec::getPortFormat(OMX_U32 portIndex, sp<AMessage> &notify) {
+@@ -2768,6 +2797,12 @@ status_t ACodec::setupAACCodec(
+     if (encoder && isADTS) {
+         return -EINVAL;
+     }
++#ifdef MTK_HARDWARE  //Error handling for WhatsApp issue.
++    if (encoder && sampleRate == 44000)
++    {
++        sampleRate = 44100;
++    }
++#endif
+ 
+     status_t err = setupRawAudioFormat(
+             encoder ? kPortIndexInput : kPortIndexOutput,
+@@ -3899,7 +3934,20 @@ status_t ACodec::setupVideoEncoder(
+ 
+     video_def->nSliceHeight = sliceHeight;
+ 
++#ifdef MTK_HARDWARE //for continus shot feature
++    ALOGD("nStride %d, nSliceHeight %d", video_def->nStride, video_def->nSliceHeight);
++    //support RGB565 and RGB888 size
++    if( colorFormat == OMX_COLOR_Format16bitRGB565 )
++        def.nBufferSize = (video_def->nStride * video_def->nSliceHeight * 2);
++    else if( colorFormat == OMX_COLOR_Format24bitRGB888 )
++        def.nBufferSize = (video_def->nStride * video_def->nSliceHeight * 3);
++    else if( colorFormat == OMX_COLOR_Format32bitARGB8888 )
++        def.nBufferSize = (video_def->nStride * video_def->nSliceHeight * 4);
++    else
+     def.nBufferSize = (video_def->nStride * video_def->nSliceHeight * 3) / 2;
++#else
++    def.nBufferSize = (video_def->nStride * video_def->nSliceHeight * 3) / 2;
++#endif
+ 
+     float frameRate;
+     if (!msg->findFloat("frame-rate", &frameRate)) {
+@@ -5141,6 +5189,16 @@ status_t ACodec::getPortFormat(OMX_U32 portIndex, sp<AMessage> &notify) {
                              rect.nWidth = videoDef->nFrameWidth;
                              rect.nHeight = videoDef->nFrameHeight;
                          }
@@ -1599,10 +1690,10 @@ index e0d977a..4ea843f 100644
 +
  }; // namespace android
 diff --git a/services/audiopolicy/service/AudioPolicyInterfaceImpl.cpp b/services/audiopolicy/service/AudioPolicyInterfaceImpl.cpp
-index ed8683c..4cc6b27 100644
+index 8bc50b0..bd4e8ef 100644
 --- a/services/audiopolicy/service/AudioPolicyInterfaceImpl.cpp
 +++ b/services/audiopolicy/service/AudioPolicyInterfaceImpl.cpp
-@@ -776,6 +776,20 @@ status_t AudioPolicyService::getMasterMono(bool *mono)
+@@ -778,6 +778,20 @@ status_t AudioPolicyService::getMasterMono(bool *mono)
      return mAudioPolicyManager->getMasterMono(mono);
  }
  
