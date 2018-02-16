@@ -82,6 +82,7 @@ ro.mtk_bt_support=1
 ro.mtk_bsp_package=1
 wfd.dummy.enable=1
 mtk.vdec.waitkeyframeforplay=1
+persist.media.treble_omx=false
 ro.media.maxmem=500000000
 ro.nxpnfc.feature=1
 mdc_initial_max_retry=10

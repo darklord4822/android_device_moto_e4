@@ -56,9 +56,9 @@ PRODUCT_COPY_FILES += \
 
 # Media	
 PRODUCT_COPY_FILES += \
-    frameworks/av/media/libstagefright/data/media_codecs_google_audio.xml:system/etc/media_codecs_google_audio.xml \
-    frameworks/av/media/libstagefright/data/media_codecs_google_telephony.xml:system/etc/media_codecs_google_telephony.xml \
-    frameworks/av/media/libstagefright/data/media_codecs_google_video_le.xml:system/etc/media_codecs_google_video_le.xml
+    frameworks/av/media/libstagefright/data/media_codecs_google_audio.xml:vendor/etc/media_codecs_google_audio.xml \
+    frameworks/av/media/libstagefright/data/media_codecs_google_telephony.xml:vendor/etc/media_codecs_google_telephony.xml \
+    frameworks/av/media/libstagefright/data/media_codecs_google_video_le.xml:vendor/etc/media_codecs_google_video_le.xml
 
 # Media	
 PRODUCT_COPY_FILES += \
@@ -166,11 +166,6 @@ PRODUCT_PACKAGES += \
 # Keymaster HAL
 PRODUCT_PACKAGES += \
     android.hardware.keymaster@3.0-impl
-    
-# Gatekeeper HAL
-PRODUCT_PACKAGES += \
-    android.hardware.gatekeeper@1.0-impl \
-    android.hardware.gatekeeper@1.0-service
 
 # Lights
 PRODUCT_PACKAGES += \
@@ -219,10 +214,6 @@ PRODUCT_PACKAGES += \
     libgralloc_extra \
     libgui_ext \
     libui_ext
-    
-# Omx HAL
-PRODUCT_PACKAGES += \
-    android.hardware.media.omx@1.0
 
 # Disable adb security
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \

@@ -51,6 +51,9 @@ LOCAL_SRC_FILES := \
 
 LOCAL_C_INCLUDES := \
 	device/moto/e4/libgem/inc \
+	frameworks/native/libs/nativewindow/include \
+	frameworks/native/libs/nativebase/include \
+	frameworks/native/libs/arect/include \
 	external/libpng \
 	external/zlib \
 	external/skia/src/images \

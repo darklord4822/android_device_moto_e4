@@ -108,6 +108,9 @@ MTK_HWC_VERSION := 1.4.1
 MTK_GPU_VERSION := mali midgard r12p1
 OVERRIDE_RS_DRIVER := libRSDriver_mtk.so
 
+# SW Gatekeeper
+BOARD_USE_SOFT_GATEKEEPER := true
+
 # Mediatek support
 BOARD_USES_MTK_HARDWARE:=true
 #DISABLE_ASHMEM_TRACKING := true
@@ -118,9 +121,6 @@ USE_CAMERA_STUB := true
 # Boot animation
 TARGET_BOOTANIMATION_MULTITHREAD_DECODE := true
 TARGET_BOOTANIMATION_TEXTURE_CACHE := true
-
-# Audio
-BOARD_USES_MTK_AUDIO := true
 
 # Lineage Hardware
 BOARD_HARDWARE_CLASS += device/moto/e4/lineagehw
