@@ -29,6 +29,6 @@ Thanks to olegsvs, danielhk, Zormax, xcore995, SRT.
 - [ ] Radio
 - [ ] Fingerprint
 - [ ] Bluetooth
-- [ ] Sensors
+- [x] Sensors
 - [ ] Hotspot
 - ...

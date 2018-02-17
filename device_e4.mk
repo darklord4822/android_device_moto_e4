@@ -102,8 +102,9 @@ PRODUCT_PACKAGES += \
     android.hardware.wifi@1.0-service \
     dhcpcd.conf \
     hostapd \
-    wificond \
+    lib_driver_cmd_mt66xx \
     libwpa_client \
+    wificond \
     wpa_supplicant \
     wpa_supplicant.conf
 
@@ -136,11 +137,12 @@ PRODUCT_PACKAGES += \
     android.hardware.camera.provider@2.4-impl \
     android.hardware.camera.provider@2.4-service
 
+
 # FM Radio
-#PRODUCT_PACKAGES += \
-#    android.hardware.broadcastradio@1.0-impl \
-#    FMRadio \
-#    libfmjni
+PRODUCT_PACKAGES += \
+    android.hardware.broadcastradio@1.0-impl \
+    FMRadio \
+    libfmjni
 
 # Camera
 PRODUCT_PACKAGES += \

@@ -4,10 +4,6 @@
 ro.hardware=mt6735
 ro.board.platform=mt6737m
 
-# Wifi
-wifi.interface=wlan0
-wifi.direct.interface=p2p0
-
 #
 ro.sf.lcd_density=320
 persist.sys.lcd_density=320
@@ -65,8 +61,14 @@ persist.sys.scrollingcache=2
 # temporary enables NAV bar (soft keys)
 qemu.hw.mainkeys=1
 
+# Wifi
 mediatek.wlan.chip=CONSYS_MT6735
+mediatek.wlan.ctia=0
 mediatek.wlan.module.postfix=_consys_mt6735
+ro.mediatek.wlan.wsc=1
+ro.mediatek.wlan.p2p=1
+wifi.interface=wlan0
+wifi.direct.interface=p2p0
 ##
 
 ro.mtk_gps_support=1
@@ -84,7 +86,6 @@ wfd.dummy.enable=1
 mtk.vdec.waitkeyframeforplay=1
 persist.media.treble_omx=false
 ro.media.maxmem=500000000
-ro.nxpnfc.feature=1
 mdc_initial_max_retry=10
 
 # Telephony
