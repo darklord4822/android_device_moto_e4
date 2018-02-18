@@ -16,9 +16,6 @@ ro.sys.usb.mtp.whql.enable=0
 # Power off opt in IPO
 sys.ipo.pwrdncap=2
 
-ro.sys.usb.storage.type=mtp,adb
-ro.vold.umsdirtyratio=20
-
 # USB BICR function
 ro.sys.usb.bicr=no
 
@@ -30,10 +27,6 @@ ro.camera.sound.forced=0
 ro.audio.silent=0
 
 ro.zygote.preload.enable=0
-
-persist.sys.strictmode.visual=0
-persist.sys.strictmode.disable=1
-ro.boot.selinux=disable
 
 # Disable dirty region for Mali
 debug.hwui.render_dirty_regions=false
@@ -83,10 +76,7 @@ ro.mtk_perfservice_support=1
 ro.mtk_bt_support=1
 ro.mtk_bsp_package=1
 wfd.dummy.enable=1
-mtk.vdec.waitkeyframeforplay=1
 persist.media.treble_omx=false
-ro.media.maxmem=500000000
-mdc_initial_max_retry=10
 
 # Telephony
 rild.libpath=mtk-ril.so

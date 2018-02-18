@@ -152,9 +152,12 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     mtk_symbols
     
-# Fingerprint HAL
+# Fingerprint
 PRODUCT_PACKAGES += \
-    android.hardware.biometrics.fingerprint@2.1-service
+    android.hardware.biometrics.fingerprint.microarray@2.1-service
+
+PRODUCT_COPY_FILES += \
+    frameworks/native/data/etc/android.hardware.fingerprint.xml:system/etc/permissions/android.hardware.fingerprint.xml
 
 # Power
 PRODUCT_PACKAGES += \
