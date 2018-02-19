@@ -123,7 +123,7 @@ USE_CAMERA_STUB := true
 
 # Boot animation
 TARGET_BOOTANIMATION_MULTITHREAD_DECODE := true
-TARGET_BOOTANIMATION_TEXTURE_CACHE := true
+#TARGET_BOOTANIMATION_TEXTURE_CACHE := true
 
 # Lineage Hardware
 BOARD_HARDWARE_CLASS += device/moto/e4/lineagehw
@@ -139,7 +139,7 @@ BOARD_RIL_CLASS := ../../../device/moto/e4/ril/
 
 # GPS
 BOARD_GPS_LIBRARIES :=true
-BOARD_CONNECTIVITY_MODULE := MT6625
+BOARD_CONNECTIVITY_MODULE := MT6630
 BOARD_MEDIATEK_USES_GPS := true
 
 # Wireless
@@ -171,7 +171,7 @@ EXTENDED_FONT_FOOTPRINT := true
 BOARD_HAVE_BLUETOOTH := true
 #BOARD_HAVE_BLUETOOTH_MTK := true
 #BOARD_BLUETOOTH_DOES_NOT_USE_RFKILL := true
-BOARD_BLUETOOTH_BDROID_HCILP_INCLUDED := 0
+#BOARD_BLUETOOTH_BDROID_HCILP_INCLUDED := 0
 BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/moto/e4/bluetooth
 
 TARGET_LDPRELOAD += mtk_symbols.so
@@ -202,9 +202,6 @@ TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/class/android_usb/android0/f_mass_storag
 
 BOARD_SEPOLICY_DIRS := \
        device/moto/e4/sepolicy
-
-# Seccomp filter
-BOARD_SECCOMP_POLICY += device/moto/e4/seccomp
 
 #HIDL
 DEVICE_MANIFEST_FILE := device/moto/e4/hidl/manifest.xml

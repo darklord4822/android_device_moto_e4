@@ -26,7 +26,7 @@ Thanks to olegsvs, danielhk, Zormax, xcore995, SRT.
 - [ ] Ril
 - [ ] Codecs
 - [ ] Camera, flashlight
-- [ ] Radio
+- [x] Radio
 - [ ] Fingerprint
 - [ ] Bluetooth
 - [x] Sensors

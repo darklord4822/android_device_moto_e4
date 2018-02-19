@@ -76,7 +76,6 @@ ro.mtk_perfservice_support=1
 ro.mtk_bt_support=1
 ro.mtk_bsp_package=1
 wfd.dummy.enable=1
-persist.media.treble_omx=false
 
 # Telephony
 rild.libpath=mtk-ril.so
